@@ -28,27 +28,21 @@ public class HelloWorldWidget extends GenericMustacheWidget {
 	protected void init(WbdWidget instance) throws WbdException
 	{
 		super.init(instance);
-		instance.defineProperty(new WbdStringProperty("label", null, "Label", ""));
-		instance.defineProperty(new WbdStringProperty("url", null, "URL", ""));
+		instance.defineProperty(new WbdStringProperty("name", null, "name", ""));
 		instance.defineProperty(new WbdNavPointProperty("navpoint", null, "Navpoint", ""));
-		instance.defineProperty(new WbdRadioTextProperty("switcher", null, "Switcher", "URL,navpoint", ""));
-		instance.defineProperty(new WbdRadioTextProperty("target", null, "Target", "Same Page,New Page", ""));
+		instance.defineProperty(new WbdRadioTextProperty("adult", null, "Adult?", "Yes,No", ""));
 	}
 	
 	@Override
 	public Properties getPropertiesForViewHelper(WbdGenerator generator, WbdWidget instance, UimData ud) throws WbdException {
-		String label = instance.getFinalProperty(generator, "label");
-		String url = instance.getFinalProperty(generator, "url");
+		String name = instance.getFinalProperty(generator, "name");
 		String navpoint = instance.getFinalProperty(generator, "navpoint");
-		String switcher = instance.getFinalProperty(generator, "switcher");
-		String target = instance.getFinalProperty(generator, "target");
+		String adult = instance.getFinalProperty(generator, "adult");
 		
 		Properties properties = new Properties();
-		properties.setProperty("label", label);
-		properties.setProperty("url", url);
+		properties.setProperty("name", name);
 		properties.setProperty("navpoint", RoutingUIM.navpointUrl(ud, navpoint, AutomaticUrlParametersMode.NO_AUTOMATIC_URL_PARAMETERS));
-		properties.setProperty("switcher", switcher);
-		properties.setProperty("target", target);
+		properties.setProperty("adult", adult);
 		
 		return properties;
 	}
